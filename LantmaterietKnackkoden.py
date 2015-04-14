@@ -1,31 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import hashlib, base64
 
+code = "R8O2ciBldHQgcHJvZ3JhbSBzb20gc2tyaXZlciB1dCB0YWxlbiBpIG3DpG5nZGVuIHsxLCAyLCAu Li4sIDEwNTAwfSBpIHN0aWdhbmRlIG9yZG5pbmcuCgpPbSB0YWxldCDDpHIgasOkbW50IGRlbGJh"\
+"cnQgbWVkIDMgc8OlIHNrYSB3d3cuIHNrcml2YXMgdXQgaXN0w6RsbGV0IGbDtnIgc2rDpGx2YSB0 YWxldC4KT20gdGFsZXQgw6RyIGrDpG1udCBkZWxiYXJ0IG1lZCA1IHPDpSBza2EgbGFudG1hdGVy"\
+"aWV0IHNrcml2YXMgdXQgaXN0w6RsbGV0IGbDtnIgc2rDpGx2YSB0YWxldC4KT20gdGFsZXQgw6Ry IGrDpG1udCBkZWxiYXJ0IG1lZCA3IHPDpSBza2EgLnNlIHNrcml2YXMgdXQgaXN0w6RsbGV0IGbD"\
+"tnIgc2rDpGx2YSB0YWxldC4KT20gdGFsZXQgw6RyIGrDpG1udCBkZWxiYXJ0IG1lZCAzLCA1IG9j aCA3IHPDpSBza2Egd3d3LmxhbnRtYXRlcmlldC5zZSBza3JpdmFzIHV0IGlzdMOkbGxldCBmw7Zy"\
+"IHNqw6RsdmEgdGFsZXQuCgpJbmdhIG55cmFkc3RlY2tlbiBza2Egc2tyaXZhcyB1dCwgdXRhbiBh bGx0IHNrYSBza3JpdmFzIHV0IHDDpSBlbiBvY2ggc2FtbWEgcmFkLgoKVXRza3JpZnRlbiBpbmxl"\
+"ZHMgZW5saWd0IG5lZGFuOgoxIDIgd3d3LiAob2NoIHPDpSB2aWRhcmUuLi4pCgpJbmdldCBtZWxs YW5ydW0gc29tIHNpc3RhIHRlY2tlbi4KCk1ENS1zdW1tYW4gYXYgdXRza3JpZnRlbiDDpHIgNDAy"\
+"MDg3YTg2ZjRmYmQ1ZDAxZDgwYmFlYzEzZmRkYzUKCk1lbiB2YWQgw6RyIFNIQS0xLXN1bW1hbj8g CgpUYSBtZWQgc3ZhcmV0IGkgZGluIGFuc8O2a2FuIQo="
 
-"""Gör ett program som skriver ut talen i mängden {1, 2, ..., 10500} i stigande ordning.
+decoded = base64.b64decode(code)
 
-Om talet är jämnt delbart med 3 så ska www. skrivas ut istället för själva talet.
-Om talet är jämnt delbart med 5 så ska lantmateriet skrivas ut istället för själva talet.
-Om talet är jämnt delbart med 7 så ska .se skrivas ut istället för själva talet.
-Om talet är jämnt delbart med 3, 5 och 7 så ska www.lantmateriet.se skrivas ut istället för själva talet.
-
-Inga nyradstecken ska skrivas ut, utan allt ska skrivas ut på en och samma rad.
-
-Utskriften inleds enligt nedan:
-1 2 www. (och så vidare...)
-
-Inget mellanrum som sista tecken.
-
-MD5-summan av utskriften är 402087a86f4fbd5d01d80baec13fddc5
-
-Men vad är SHA-1-summan? 
-
-Ta med svaret i din ansökan!
-"""
-
-import hashlib
-
+print decoded
 string = ""
+
 for n in range (1,10501):
 	if n % 3 == 0 and n % 5 == 0 and n % 7 == 0:
 		string += "www.lantmateriet.se"
@@ -42,13 +31,13 @@ for n in range (1,10501):
 	
 
 checksumToArchive = "402087a86f4fbd5d01d80baec13fddc5".upper()
-
 checksum1 = hashlib.md5(string).hexdigest()
+
 print checksum1
 print checksum1.upper() == checksumToArchive.upper()
 
-checksum1 = hashlib.sha1(string).hexdigest()
+checksum1 = hashlib.sha1(string).hexdigest().upper()
 
-print checksum1
+print "SHA-1 värde: ",checksum1
 
 
